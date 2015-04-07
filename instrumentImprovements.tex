@@ -253,6 +253,13 @@ I decided to use Anna's old computer, reformatted it and am now setting it up to
     \item $\Box$ Get putty setup to host the ssh tunnels.
 \end{enumerate}
 
+\subsection{FreeSSHD Putty and tunneling}
+I'm setting up the system to do tunneling. This, to me, means essentially ssh on windows. What this also allows is for an outside computer, say a linux box, to ssh to the host windows PC and operate the spectrometer (essentially the associated instruments with the spectrometer).
+
+So what happens is the host windows computer 'brokenBandit' communicates with all of the instruments through the loop back port 127.0.0.1.
+
+For this to work the winows computer needs to host an ssh server, this is provided with freeSSHd.
+
 
 \chapter{Ralph and the Elexsys}
 Ralph, from Bruker, is coming to visit sometime in the future\ldots Definitly, hopefully, before I graduate. However he knows lots of things EPR wise and even more so how-to-hack-the-Elexsys wise. I have some things that I need to do on the Elexsys that I cannot currently and I need to make sure I wring this knowledge out of Ralph when he is here.\\ \\
