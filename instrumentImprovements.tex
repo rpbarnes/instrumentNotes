@@ -88,6 +88,27 @@ I find that the video amps are causing some sort of baseline issue I see that wi
 
 \end{minipage}}
 
+\subsection{Implementation of 1 GHz bandwidth video amplifiers and bandpass filters}
+Like the title says I implement the high bandwidth video amplifiers and the bandpass filters to deal with the baseline issue we're currently facing. \\
+
+The figure show what we're currently dealing with. I put out a 2000 ns long pulse at low power approximately 1 mW and I see this issue.\\
+
+\mbox{\begin{minipage}{0.5\linewidth}
+
+\includegraphics[width=\linewidth]{150407BAselineNoBandpass.pdf}\label{fig:noVA}
+
+\hrulefill 
+
+{\color{red}{\tiny file:}:}\begin{tiny}\fn{150407BAselineNoBandpass.pdf}\end{tiny} 
+
+\hrulefill
+
+\end{minipage}
+
+
+I note that the high pass filters that I ordered from minicircuits never came in\ldots 
+
+
 \section{AWG Synthesizer}
 \begin{enumerate}
 	\item $\Box$ Place low power (roughly 10 - 100 mW) switch and isolator after the IQ mixer to kill any leakage.
