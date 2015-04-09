@@ -109,11 +109,45 @@ The figure show what we're currently dealing with. I put out a 2000 ns long puls
 I note that the high pass filters that I ordered from minicircuits never came in\ldots 
 
 
+\subsection{Testing the reciever 15/04/09}
+
+I setup to test the reciever with a BDPA PS sample. I tune the cavity and the
 \section{AWG Synthesizer}
 \begin{enumerate}
 	\item $\Box$ Place low power (roughly 10 - 100 mW) switch and isolator after the IQ mixer to kill any leakage.
 	\item $\Box$ Possibly use a phase shifter and variable attenuator 
 \end{enumerate}
+
+\subsection{Testing the Synthesizer Switch 15/04/09}
+
+I place the switch from miteq in the synthesizer train and test to find the best configuration possible.
+
+I find the following 
+\begin{enumerate}
+    \item The switch puts out a video transient at MHz frequencies when the switch turns both on and off. \o[This is why the high pass filter is in place and is bloody necessary!]{USE IT}
+    \item The performance of the switch is better before the low noise amplifier as evidenced by the graph below.
+    \item The input line to the switch is not impedence matched to 50 ohms. I placed a 50 ohm load to ground on the sma input and this cleans up the switch transient that is imprinted on the microwave waveform.
+\end{enumerate}
+
+
+I think this issue is wraped up for the moment as we have very high isolation after the pulse.
+
+Below shows the comparison of the synthesizer switch placed before and after the input amplifier. What I find is that I get better isolation if I place the switch before the amplifier, plot shown below. \o[The Data for the plot is saved in '150409Experiments.h5']{}
+
+Also note that this is taken without doing any zero calibration on the DAC board.
+
+\mbox{\begin{minipage}{0.7\linewidth}
+
+\includegraphics[width=\linewidth]{150409SynthesizerSwitchComparison.pdf}\label{fig:noVA}
+
+\hrulefill 
+
+{\color{red}{\tiny file:}:}\begin{tiny}\fn{150409SynthesizerSwitchComparison.pdf}\end{tiny} 
+
+\hrulefill
+
+\end{minipage}} 
+
 
 
 \section{Bruker Bridge}
@@ -230,6 +264,21 @@ I find that the 10 MHz oscillator is unplugged, thus the DAC is not recieving a 
 I now try to use the DAC board, and I can synthesize waveforms good news.
 
 The ecl port is j24 you idiot!
+
+\section{We're in a rush to do things as always\ldots Flash the old firmware and switch back to using the old server program.}
+
+I flash the old firmware back onto the board and setup with the old server program and things work.
+
+I make sure to flash the .pof file because we need to be able to restart the board.
+
+
+\chapter{The Prologix Controller}
+
+This does deserve it's own chapter as you spent two days figuring this out\ldots The power supply is truly important. You found that it is very important that it supply the right power, if it's not right the prologix controller will still light up and 'look' normal however it will not function properly as an tcp / ip socket.
+
+I can now access the field controller and I setup the gpibtunnels in putty to forward or tunnel or whatever it's called through this new address. 
+
+I can now access the gpib controller via 'conn = g.gpib()' and the field controller through 'fc = g.field\_controller()'. The new computer is still a problem but atleast this is fixed.
 
 
 \chapter{This Fucking Windows Computer - Rebooting and Getting the DAC to work with New Comp and Firmware}
