@@ -271,6 +271,20 @@ I flash the old firmware back onto the board and setup with the old server progr
 
 I make sure to flash the .pof file because we need to be able to restart the board.
 
+I flash the old firm ware and switch to what I think is an old version of labrad. The problem is the server program does not like when I do a long delay\ldots
+
+Specifically I cannot run functions '\_sendDAC()' and 'fpga.run\_sequence()' with the current build, server program, and labrad implemnetation. 
+
+I need to fix this as we need to be able to run sequences longer than $15 \mu s$. The things I try are below.
+\begin{enumerate}
+    \item $\checkmark$ Try updating to the new version of the labrad. \o[This didn't work for allowing the use of sending and playing memory]{Balls}
+    \item $\checkmark$ Try loading the old labrad in site_packages. \o[Again this didn't work]{}
+    \item $\checkmark$ Try the old server progam and make sure it's using the old labrad version. \o[Yes, using old version of labrad and the old server. Still Didn't work]{}
+    \item $\checkmark$ Flash what you think to be the old build onto the board, I found \o[V5_b8]{} on the Martinis website and tried that but I still get the 'Paging off: SRAM too long.' error. \o[I see the registry has definitions for the sram length that look right but I now check what length of sram I'm sending to the DAC.]{This isn't a build problem\ldots This is something to do with the server or the registry.}
+    \item $\checkmark$ Check sram length, maybe this error is real and not something to do with the old server / build. \o[No it's the proper length.]{FUCK!}
+    \item $\Box$ Do build 14. The new server. The new labrad. Daniel got back to me about the issue being resolved\ldots Maybe this will work now? \o[Make sure to test with the 'testBuild14.py', this code runs through a jump\_table example that Daniel gave me and also plays an sram sequence. Also make sure you try all build numbers. ]{I got through and try all build numbers and cannot get the board to function when sending jumptable commands.}
+\end{enumerate}
+
 
 \chapter{The Prologix Controller}
 
