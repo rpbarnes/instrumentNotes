@@ -112,6 +112,16 @@ I note that the high pass filters that I ordered from minicircuits never came in
 \subsection{Testing the reciever 15/04/09}
 
 I setup to test the reciever with a BDPA PS sample. I tune the cavity and the
+
+We setup with the synthesizer switch and the new reciever configuration and take some signal meausrements.
+
+
+I save a representative data set as '150410Experiments.h5/phaseCycleWithBandPassWithSynthSwitch'. \o[Here we have the synthesizer switch in place and we're using the TWT. Currently the reciever switch is sitting on the shelf and not being used. I'm also using the 200 MHz bandpass filters. I set the YIG 300 MHz off resonance and use the DAC board to modulate the frequency by 300 MHz. I see that this very much cleans up the base line to my signal as I take this signal with a 4 step phase cycle. The sample is solid BPDA and I'm lookin at an echo.]{}
+
+In preparation, I pull the synthesizer switch so the waveforms have a very high offset and I see that I still record fine signal. I repeat the same measurement and save the signal as '150410Experiments.h5/phaseCycleWithBandPassWithOutSynthSwitch'.
+
+Also note I have a script written up to do a quick phase cycle with the modulation of the carrier by the DAC board. The script name is \o['bandpassSignalTest.py'.]{}
+
 \section{AWG Synthesizer}
 \begin{enumerate}
 	\item $\Box$ Place low power (roughly 10 - 100 mW) switch and isolator after the IQ mixer to kill any leakage.
@@ -282,7 +292,18 @@ I need to fix this as we need to be able to run sequences longer than $15 \mu s$
     \item $\checkmark$ Try the old server progam and make sure it's using the old labrad version. \o[Yes, using old version of labrad and the old server. Still Didn't work]{}
     \item $\checkmark$ Flash what you think to be the old build onto the board, I found \o[V5_b8]{} on the Martinis website and tried that but I still get the 'Paging off: SRAM too long.' error. \o[I see the registry has definitions for the sram length that look right but I now check what length of sram I'm sending to the DAC.]{This isn't a build problem\ldots This is something to do with the server or the registry.}
     \item $\checkmark$ Check sram length, maybe this error is real and not something to do with the old server / build. \o[No it's the proper length.]{FUCK!}
-    \item $\Box$ Do build 14. The new server. The new labrad. Daniel got back to me about the issue being resolved\ldots Maybe this will work now? \o[Make sure to test with the 'testBuild14.py', this code runs through a jump\_table example that Daniel gave me and also plays an sram sequence. Also make sure you try all build numbers. ]{I got through and try all build numbers and cannot get the board to function when sending jumptable commands.}
+    \item $\checkmark$ Do build 14. The new server. The new labrad. Daniel got back to me about the issue being resolved\ldots Maybe this will work now? \o[Make sure to test with the 'testBuild14.py', this code runs through a jump\_table example that Daniel gave me and also plays an sram sequence. Also make sure you try all build numbers. ]{I got through and try all build numbers and cannot get the board to function when sending jumptable commands.}
+\end{enumerate}
+
+\subsection{15/04/12}
+
+Conclusion to previous day of work. Jump tables will not work at this time due to continued development at the Martinis group\ldots The problem is I need to loop over memory to do long delays which I currently cannot do. \\
+
+{\bf Make a test script for Daniel that shows the sram and the memory I send to the DAC board. Do this running the new server and the newest version of pylabrad.}
+
+
+\begin{enumerate}
+    \item I'm now running the newest version of pylabrad on master branch and the newest version of servers on jump\_table\_test\_bench branch.
 \end{enumerate}
 
 
